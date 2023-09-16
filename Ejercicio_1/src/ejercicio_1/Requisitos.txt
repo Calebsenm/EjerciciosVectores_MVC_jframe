@@ -25,27 +25,32 @@ OK 1.Crear y Registrar N empleados en el vector de objetos de empleados.
   si existe mostrar sus datos y el valor neto a pagar de ese empleado.
   El neto a pagar de cada empleado es calculado bajo las siguientes condiciones:
 
-• Se debe descontar 4% del salario básico para aportes a salud, 3,75% 
-    para aportes a pensión y 2% para ARL.
+• Se debe descontar 4% del salario básico para aportes a salud, 
+  3,75% para aportes a pensión y 2% para ARL.
+
 • Se debe sumar en el neto a pagar el devengado por horas extra 
     que se obtiene de la cantidad laborada por el valor de las H.E
+
 • La hora extra tendrá un valor de $45.000 si el empleado tiene 
     más de 10 años en la empresa, de $35.000 si tiene entre 10 y 5 
     años, de $ 30.000 si tiene entre 5 y 3 años y de $ 25.000 si tiene menos de 3 años.
-• Los empleados de ESTRATO 1 y 2 tienen un subsidio de transporte equivalente a $78.000.
+
+• Los empleados de ESTRATO 1 y 2 tienen un subsidio de transporte 
+equivalente a $78.000.
 
 Al finalizar se debe arrojar el detallado de nómina para el empleado donde 
 especifica sus ganancias, descuentos y el neto a pagar así:
 
 SUELDO BASICO			xxxxx
 H.E LABORADAS			xxxxx	
-VALOR H.E			xxxxx
-TOTAL H.E			xxxxx
+VALOR H.E			    xxxxx
+TOTAL H.E			    xxxxx
 APORTE SALUD			xxxxx
-APORTE PENSION			xxxxx
-APORTE ARL			xxxxx	
+APORTE PENSION		xxxxx
+APORTE ARL			  xxxxx	
 SUBSIDIO TTE			xxxxx
 NETO A PAGAR			XXXXXX
+
 
 3.Generar un listado ordenando los empleados según su salario neto 
   de mayor a menor, para esto deben usar el método Quicksort.
