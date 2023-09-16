@@ -26,7 +26,7 @@ public class VectorEmpleados {
         return false;
     }
 
-    // calcula los saldos netos y genera el reporte
+    // calcula los saldos netos y genera el reporte devolviendo una String
     public String calularsueldoNeto(int id) {
 
         String nomina;
@@ -43,7 +43,7 @@ public class VectorEmpleados {
             double sudsidioTTE;
             double netoAPagar;
             int añosTrabajados;
-            double devengado; 
+            double devengado;
 
             // Calcula los años hasta hoy
             LocalDate fecha = empleados[id].getFechaVinculacion();
@@ -63,15 +63,14 @@ public class VectorEmpleados {
             }
 
             devengado = valorHorasExtraLaboradas * horasExtraLaboradas;
-        
-            if ( empleados[id].getEstrato()  == 1 || empleados[id].getEstrato() == 2 ){
+
+            if (empleados[id].getEstrato() == 1 || empleados[id].getEstrato() == 2) {
                 sudsidioTTE = 78.000;
-            } else{
+            } else {
                 sudsidioTTE = 0;
             }
-           
-            netoAPagar = sueldoBasico - aporteSalud - aportePension - aporteArl + devengado + sudsidioTTE ;
-            
+
+            netoAPagar = sueldoBasico - aporteSalud - aportePension - aporteArl + devengado + sudsidioTTE;
 
             nomina = "Nomina \n"
                     + "SUELDO BASICO	         $" + sueldoBasico + "\n "
@@ -97,23 +96,99 @@ public class VectorEmpleados {
         return nomina;
     }
 
+    // Metodos del algoritmo Quicksort
+    public static void swap(Empleado[] empleado, int i, int j) {
+        Empleado temp = empleado[i];
+        empleado[i] = empleado[j];
+        empleado[j] = temp;
+    }
 
-    // ordenará de mayor a menor 
-    public void ordenarQuickSort(){
+    public static int partition(Empleado[] empleado, int start, int end) {
+        double pivot = empleado[end].getSalarioNeto();
+        int pIndex = start;
+
+        for (int i = start; i < end; i++) {
+            if (empleado[i].getSalarioNeto() <= pivot) {
+                swap(empleado, i, pIndex);
+                pIndex++;
+            }
+        }
+        swap(empleado, end, pIndex);
+        return pIndex;
+    }
+
+    public void ordenarQuickSort(Empleado[] empleado, int inicio, int fin) {
+
+        if (inicio >= fin) {
+            return;
+        }
+
+        int pivot = partition(empleado, inicio, fin);
+        ordenarQuickSort(empleado, inicio, pivot - 1);
+        ordenarQuickSort(empleado, pivot + 1, fin);
 
     }
 
-    // ordenará alfabeticamente de forma acendente por nombres 
-    public void ordernarPorSelección(){
+    // ordenará alfabeticamente de forma acendente por nombres
+    public void odenarSeleccion(Empleado[] empleado) {
+        for (int i = empleado.length - 1; i > 0; i--) {
+            int maxValue = 0;
+            for (int j = 0; j < i; j++) {
+                
+                if (compareStrings( empleado[i].getNombre() , empleado[j].getNombre()) > 0){
+                    maxValue = j + 1;
+                }
 
+            }
+            swapSelecction(empleado, i, maxValue);
+        }
     }
 
-    // ordena por estrato en forma decendente 
-    public void ordenarShell(){
-
+    private void swapSelecction(Empleado[] array, int a, int b) {
+        Empleado value = array[b];
+        array[b] = array[a];
+        array[a] = value;
     }
 
-    public void salir(){
+    private  int compareStrings(String word1, String word2) {
+        for (int i = 0; i < Math.min(word1.length(), word2.length()); i++) {
+            if ((int) word1.charAt(i) != (int) word2.charAt(i)) {
+                return (int) word1.charAt(i) - (int) word2.charAt(i);
+            }
+        }
+        if (word1.length() != word2.length()) {
+            return word1.length() - word2.length();
+        } else {
+            return 0;
+        }
+    }
+
+    // ordena por estrato en forma decendente
+    public void ordenarShell (Empleado[] empleado){
+            int inta, i;
+            Empleado aux;
+            boolean band;
+            inta = empleado.length;
+            while(inta > 0){
+                inta = inta / 2;
+                band = true;
+                while(band){
+                    band = false;
+                    i = 0;
+                    while ((i+inta) <=empleado.length-1){//2.1.1
+                        if (empleado[i].getEstrato() > empleado[i + inta].getEstrato()){
+                            aux = empleado[i];
+                            empleado[i] = empleado[i+inta];
+                            empleado[i+inta] = aux;
+                            band = true;
+                        }
+                        i = i +1;
+                    }
+                }
+            }
+    }
+
+    public void salir() {
         System.exit(0);
     }
 

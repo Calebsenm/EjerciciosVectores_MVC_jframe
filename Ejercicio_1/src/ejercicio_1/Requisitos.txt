@@ -54,6 +54,7 @@ NETO A PAGAR			XXXXXX
 
 3.Generar un listado ordenando los empleados según su salario neto 
   de mayor a menor, para esto deben usar el método Quicksort.
+  
 4.Generar un listado con la información de los empleados, 
   ordenados alfabéticamente de forma ascendente por sus nombres.  
   Utilizar el método de ordenamiento por selección.
