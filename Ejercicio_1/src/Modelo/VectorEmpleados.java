@@ -1,4 +1,4 @@
-package ejercicio_1;
+package Modelo;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -187,9 +187,4 @@ public class VectorEmpleados {
                 }
             }
     }
-
-    public void salir() {
-        System.exit(0);
-    }
-
 }
