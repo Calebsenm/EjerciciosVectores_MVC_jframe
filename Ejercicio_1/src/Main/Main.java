@@ -4,17 +4,17 @@ package Main;
 import Controlador.Controlador;
 import Modelo.VectorEmpleados;
 import Vista.VentanaPrincipal;
+import Vista.VentanaRegistro;
+
 
 public class Main {
     public static void main( String[] args){
      
-        VectorEmpleados vt = new VectorEmpleados();
-        VentanaPrincipal nv =  new VentanaPrincipal();
-        
-        Controlador control = new Controlador(nv, vt);
-        control.Iniciar();
-        
-        nv.setVisible(true);
+        VectorEmpleados empleados = new VectorEmpleados();
+        VentanaPrincipal principal =  new VentanaPrincipal();
+        Controlador control = new Controlador(principal, empleados);
+        control.Iniciar();        
+        principal.setVisible(true);
     }
 }
 

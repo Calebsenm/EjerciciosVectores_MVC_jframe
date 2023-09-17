@@ -7,9 +7,9 @@ public class VectorEmpleados {
 
     private Empleado empleados[];
 
-    public void crearEmpleados(int numero) {
+    public void crearEmpleados(int numero, Empleado listEmpleado) {
         for (int i = 0; i < numero; i++) {
-            empleados[i] = new Empleado(0, "", "", 0, 0, 0, 0, 0, null);
+            empleados[i] = listEmpleado;
         }
     }
 

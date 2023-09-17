@@ -1,8 +1,6 @@
 package Vista;
 
-import Modelo.VectorEmpleados;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
+
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -10,17 +8,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * Creates new form VentanaMain
      */
     public VentanaPrincipal() {
-        initComponents(); 
-        
-        VistaUsuarios vista = new VistaUsuarios();
-        vista.setSize(984, 462);
-        vista.setLocation(0, 0);
-        PanelVista.removeAll();
-        PanelVista.add(vista, BorderLayout.CENTER);
-        PanelVista.revalidate();
-        PanelVista.repaint();
-        
-        
+        initComponents();   
     }
 
     /**
@@ -135,16 +123,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_Salir_BnActionPerformed
 
     private void Registro_BnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Registro_BnActionPerformed
-       /*
-        VentanaRegistro vista = new VentanaRegistro();
-        vista.setSize(984, 462);
-        vista.setLocation(0, 0);
-
-        PanelVista.removeAll();
-        PanelVista.add(vista, BorderLayout.CENTER);
-        PanelVista.revalidate();
-        PanelVista.repaint();
-        */
+      
        
     }//GEN-LAST:event_Registro_BnActionPerformed
 
