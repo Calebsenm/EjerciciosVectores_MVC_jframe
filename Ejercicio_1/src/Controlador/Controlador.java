@@ -16,7 +16,7 @@ public class Controlador implements ActionListener {
 
     private VentanaPrincipal wiew;
     private VectorEmpleados empleados;
-    private Empleado empleado;
+    private Empleado []listasEmpleados;
     private VistaUsuarios vistaUsuarios = new VistaUsuarios();
     private VentanaRegistro ventanaRegistro = new VentanaRegistro();
     private int TamañoVector;
@@ -61,9 +61,8 @@ public class Controlador implements ActionListener {
         }
         if (e.getSource().equals(ventanaRegistro.GuardarBn_2)) {
             if (contador < TamañoVector) {
-               
-                empleados = new VectorEmpleados();
-                empleado = new Empleado(
+              
+                listasEmpleados[contador] = new Empleado(
                    Integer.parseInt(ventanaRegistro.ID_Empleado.getText()),
                    ventanaRegistro.Nomnbre.getText(), 
                    ventanaRegistro.Genero.getText(),
@@ -75,11 +74,13 @@ public class Controlador implements ActionListener {
                    LocalDate.parse(ventanaRegistro.FechaVinculacion.getText())
                     );
                 
-                empleados.crearEmpleados(contador, empleado);
-                
                 contador++;
                 if (contador == TamañoVector) {
                     JOptionPane.showMessageDialog(null, "Vector LLeno!");
+      
+                   empleados.setEmpleados(listasEmpleados);
+                           
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Vector LLeno!");
