@@ -5,10 +5,6 @@ import java.time.Period;
 
 public class VectorEmpleados {
 
-    public void setEmpleados(Empleado[] empleados) {
-        this.empleados = empleados;
-    }
-
     private Empleado[] empleados;
    
     

@@ -1,6 +1,7 @@
 package Vista;
 
-
+import Controlador.Controlador;
+import Controlador.ControladorInformacion;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -60,7 +61,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(Registro_Bn);
 
-        Buscar_BN.setText("Buscar Imformacion");
+        Buscar_BN.setText("Buscar Informacion");
         Buscar_BN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Buscar_BNActionPerformed(evt);
@@ -119,11 +120,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Salir_BnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir_BnActionPerformed
-        
+        Controlador.botonCerrar();
     }//GEN-LAST:event_Salir_BnActionPerformed
 
     private void Registro_BnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Registro_BnActionPerformed
-      
+       Controlador.botonRegistrar();
        
     }//GEN-LAST:event_Registro_BnActionPerformed
 
@@ -132,19 +133,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelVistaHierarchyChanged
 
     private void Buscar_BNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_BNActionPerformed
-        // TODO add your handling code here:
+        Controlador.botonBuscarInformacion();
     }//GEN-LAST:event_Buscar_BNActionPerformed
 
     private void OrdenarSalario_BnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdenarSalario_BnActionPerformed
-        // TODO add your handling code here:
+        Controlador.botonOrdenarQuicksort();
     }//GEN-LAST:event_OrdenarSalario_BnActionPerformed
 
     private void OrdenarAlfa_BnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdenarAlfa_BnActionPerformed
-        // TODO add your handling code here:
+        Controlador.botonOrdenarSeleccion();
     }//GEN-LAST:event_OrdenarAlfa_BnActionPerformed
 
     private void OrdenarEstrato_BnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdenarEstrato_BnActionPerformed
-        // TODO add your handling code here:
+       Controlador.botonOrdenarShell();
     }//GEN-LAST:event_OrdenarEstrato_BnActionPerformed
 
     /**

@@ -1,6 +1,9 @@
 
 package Vista;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 public class VentanaRegistro extends javax.swing.JPanel {
     
     public VentanaRegistro() {
@@ -58,6 +61,11 @@ public class VentanaRegistro extends javax.swing.JPanel {
         });
 
         GuardarBn_2.setText("Guardar");
+        GuardarBn_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarBn_2ActionPerformed(evt);
+            }
+        });
 
         CerrarBn_2.setText("Cerrar");
         CerrarBn_2.addActionListener(new java.awt.event.ActionListener() {
@@ -151,16 +159,13 @@ public class VentanaRegistro extends javax.swing.JPanel {
                         .addComponent(id_Empleado6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(FechaVinculacion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(id_Empleado8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(31, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(GuardarBn_2)
-                            .addComponent(CerrarBn_2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(FechaVinculacion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(id_Empleado8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(GuardarBn_2)
+                        .addComponent(CerrarBn_2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,10 +174,59 @@ public class VentanaRegistro extends javax.swing.JPanel {
     }//GEN-LAST:event_ID_EmpleadoActionPerformed
 
     private void CerrarBn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBn_2ActionPerformed
-       
+        Controlador.ControladorRegistro.ocultar();
+        Controlador.ControladorUsuarios.mostrar();
     }//GEN-LAST:event_CerrarBn_2ActionPerformed
 
+    private void GuardarBn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBn_2ActionPerformed
+        // TODO add your handling code here:
+        Controlador.ControladorRegistro.ocultar();
+        Controlador.ControladorUsuarios.mostrar();
+    }//GEN-LAST:event_GuardarBn_2ActionPerformed
 
+    public JButton getCerrarBn_2() {
+        return CerrarBn_2;
+    }
+
+    public JTextField getEstrato() {
+        return Estrato;
+    }
+
+    public JTextField getFechaVinculacion() {
+        return FechaVinculacion;
+    }
+
+    public JTextField getGenero() {
+        return Genero;
+    }
+
+    public JButton getGuardarBn_2() {
+        return GuardarBn_2;
+    }
+
+    public JTextField getHorasExtrasLaboradas() {
+        return HorasExtrasLaboradas;
+    }
+
+    public JTextField getHorasLaboradas() {
+        return HorasLaboradas;
+    }
+
+    public JTextField getNomnbre() {
+        return Nomnbre;
+    }
+
+    public JTextField getSalarioBasico() {
+        return SalarioBasico;
+    }
+
+    public JTextField getID_Empleado() {
+        return ID_Empleado;
+    }
+
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton CerrarBn_2;
     public javax.swing.JTextField Estrato;
