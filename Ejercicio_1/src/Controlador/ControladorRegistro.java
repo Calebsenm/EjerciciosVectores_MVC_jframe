@@ -1,6 +1,8 @@
 package Controlador;
 import java.awt.BorderLayout;
 
+import javax.swing.table.DefaultTableModel;
+
 import Modelo.Empleado;
 import Modelo.VectorEmpleados;
 import Vista.VentanaRegistro;
@@ -25,9 +27,8 @@ public class ControladorRegistro {
         Controlador.vn.PanelVista.repaint();
     }
     
-    public static void Guardar(){
-        int numeroVector = VectorEmpleados.getEmpleados().length;
-
+    public static void Guardar(int index){
+     
         Empleado empleado = new Empleado(
                     Integer.parseInt( ControladorRegistro.vnRegistro.getID_Empleado().getText()),
                     ControladorRegistro.vnRegistro.getNomnbre().getText(),
@@ -35,14 +36,13 @@ public class ControladorRegistro {
                     0,
                     0,
                     0,
-                    numeroVector,
+                    0,
                     0,
                     null);
 
-            VectorEmpleados.registrarEmpleados(numeroVector , empleado);
-        
-
-        System.out.println(VectorEmpleados.getEmpleados()[2] );
+            VectorEmpleados.registrarEmpleados( index , empleado);
+    
+        System.out.println(VectorEmpleados.getEmpleados()[1] );
     }
     
     public static void Cancelar(){

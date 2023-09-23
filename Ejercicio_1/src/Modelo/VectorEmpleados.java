@@ -5,18 +5,22 @@ import java.time.Period;
 
 public class VectorEmpleados {
 
-    private static Empleado empleados[];
+    private static Empleado[] empleados;
+    
+
+    public  void crearEmpleados(int numero) {
+        empleados = new Empleado[numero];
+
+        for (int i = 0; i < numero; i++) {
+            empleados[i] = new Empleado(0, "", "", 0,0, 0, 0, 0, null);
+        }
+    }
 
     public static Empleado[] getEmpleados() {
         return empleados;
     }
 
-    public  void crearEmpleados(int numero) {
-        for (int i = 0; i < numero; i++) {
-            empleados[i] = new Empleado(0, "", "", 0,0, 0, 0, 0, null);
-        }
-    }
-   
+
     public static void registrarEmpleados(int indice, Empleado empleado) {
         empleados[indice] = empleado;
     }

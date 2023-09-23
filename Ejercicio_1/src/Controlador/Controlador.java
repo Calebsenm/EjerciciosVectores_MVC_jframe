@@ -1,14 +1,17 @@
 package Controlador;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import Modelo.VectorEmpleados;
 import Vista.VentanaPrincipal;
+import Vista.VistaUsuarios;
 
 public class Controlador {
 
     public static VentanaPrincipal vn = new VentanaPrincipal();
     public static VectorEmpleados vectorEmp = new VectorEmpleados();
+    public static int Index;
 
     public static void mostrar() {
         vn.setLocationRelativeTo(null);
@@ -28,11 +31,42 @@ public class Controlador {
         ControladorUsuarios.ocultar();
         ControladorRegistro.mostrar();
 
-        int numeroVector = Integer
-                .parseInt(JOptionPane.showInputDialog("Ingresa Los el numero de usuarios a registrar "));
-        vectorEmp.crearEmpleados(numeroVector);
+        Index = Integer.parseInt(JOptionPane.showInputDialog("Ingresa Los el numero de usuarios a registrar "));
+        vectorEmp.crearEmpleados(Index);
 
-       
+    }
+
+    public static void actualizarTabla() {
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Genero");
+        modelo.addColumn("Salario Basico");
+        modelo.addColumn("Salario Neto");
+        modelo.addColumn("Estrato");
+        modelo.addColumn("Horas Laboradas");
+        modelo.addColumn("Horas Extras Laboradas");
+        modelo.addColumn("Fecha de Vinculacion");
+
+        for (int i = 0; i < Index; i++) {
+
+            modelo.addRow(new Object[] {
+                    vectorEmp.getEmpleados()[i].getIdEmpleado(),
+                    vectorEmp.getEmpleados()[i].getNombre(),
+                    vectorEmp.getEmpleados()[i].getGenero(),
+                    vectorEmp.getEmpleados()[i].getSalarioBasico(),
+                    vectorEmp.getEmpleados()[i].getSalarioNeto(),
+                    vectorEmp.getEmpleados()[i].getEstrato(),
+                    vectorEmp.getEmpleados()[i].getHorasLaboradas(),
+                    vectorEmp.getEmpleados()[i].getHorasExtraLaboradas(),
+                    vectorEmp.getEmpleados()[i].getFechaVinculacion()
+            });
+
+        }
+
+        VistaUsuarios.jTable1.setModel(modelo);
+        VistaUsuarios.jTable1.add(modelo);
 
     }
 
