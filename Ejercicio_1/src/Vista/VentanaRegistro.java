@@ -59,6 +59,8 @@ public class VentanaRegistro extends javax.swing.JPanel {
         id_Empleado7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         id_Empleado7.setText("Salario Basico");
 
+        FechaVinculacion.setText("01-01-2000");
+
         ID_Empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ID_EmpleadoActionPerformed(evt);
@@ -246,15 +248,18 @@ public class VentanaRegistro extends javax.swing.JPanel {
     private void GuardarBn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBn_2ActionPerformed
 
         ControladorRegistro.Guardar(index); 
-        index++;
+        
+        // controla el indice de la clase controlador para que si ocurre un error no se sume
+        if(!ControladorRegistro.errorGuardado){
+              index++;    
+        }
+      
         if (index == Controlador.Index){
-
-            ControladorRegistro.ocultar();
-            ControladorUsuarios.mostrar(); 
+                Controlador.actualizarTabla();        
+                ControladorRegistro.ocultar();
+                ControladorUsuarios.mostrar(); 
         } 
-
-        System.out.println(index + " "+ Controlador.Index);
-
+        
     }// GEN-LAST:event_GuardarBn_2ActionPerformed
 
     public JButton getCerrarBn_2() {

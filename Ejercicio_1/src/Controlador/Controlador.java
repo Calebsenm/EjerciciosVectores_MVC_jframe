@@ -66,14 +66,15 @@ public class Controlador {
         }
 
         VistaUsuarios.jTable1.setModel(modelo);
-        VistaUsuarios.jTable1.add(modelo);
 
     }
 
     public static void botonBuscarInformacion() {
         ControladorUsuarios.ocultar();
-        ControladorInformacion.mostrar();
 
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Ingresa el ID del usuario que deseas buscar "));
+        vectorEmp.generarReporte(id);
+        ControladorInformacion.mostrar();
     }
 
     public static void botonOrdenarQuicksort() {

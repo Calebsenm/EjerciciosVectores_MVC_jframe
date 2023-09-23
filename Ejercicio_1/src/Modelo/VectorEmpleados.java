@@ -6,20 +6,18 @@ import java.time.Period;
 public class VectorEmpleados {
 
     private static Empleado[] empleados;
-    
 
-    public  void crearEmpleados(int numero) {
+    public void crearEmpleados(int numero) {
         empleados = new Empleado[numero];
 
         for (int i = 0; i < numero; i++) {
-            empleados[i] = new Empleado(0, "", "", 0,0, 0, 0, 0, null);
+            empleados[i] = new Empleado(0, "", "", 0, 0, 0, 0, 0, null);
         }
     }
 
     public static Empleado[] getEmpleados() {
         return empleados;
     }
-
 
     public static void registrarEmpleados(int indice, Empleado empleado) {
         empleados[indice] = empleado;
@@ -35,11 +33,69 @@ public class VectorEmpleados {
     }
 
     // calcula los saldos netos y genera el reporte devolviendo una String
-    public String calularsueldoNeto(int id) {
+    public String generarReporte(int id) {
+        String nomina = "";
 
-        String nomina;
-
+         
         if (empleadoExiste(id)) {
+            double sueldoBasico = empleados[id].getSalarioBasico();
+            int horasExtraLaboradas = empleados[id].getHorasExtraLaboradas();
+            double aporteSalud = (empleados[id].getSalarioBasico() * 4) / 100;
+            double aportePension = (empleados[id].getSalarioBasico() * 3.7) / 100;
+            double aporteArl = (empleados[id].getSalarioBasico() * 2) / 100;
+            double netoAPagar = empleados[id].getSalarioNeto();
+          
+            
+            double valorHorasExtraLaboradas;
+            double sudsidioTTE;
+            int añosTrabajados;
+            double devengado;
+
+            // Calcula los años hasta hoy
+            LocalDate fecha = empleados[id].getFechaVinculacion();
+            LocalDate hoy = LocalDate.now();
+            Period periodo = Period.between(fecha, hoy);
+            añosTrabajados = periodo.getYears();
+
+            if (añosTrabajados > 10) {
+                valorHorasExtraLaboradas = 45.000;
+
+            } else if (añosTrabajados >= 5 && añosTrabajados <= 10) {
+                valorHorasExtraLaboradas = 35.000;
+            } else if (añosTrabajados >= 3 && añosTrabajados < 5) {
+                valorHorasExtraLaboradas = 30.000;
+            } else {
+                valorHorasExtraLaboradas = 25.000;
+            }
+
+            devengado = valorHorasExtraLaboradas * horasExtraLaboradas;
+
+            if (empleados[id].getEstrato() == 1 || empleados[id].getEstrato() == 2) {
+                sudsidioTTE = 78.000;
+            } else {
+                sudsidioTTE = 0;
+            }
+
+            nomina = "Nomina \n"
+                    + "SUELDO BASICO	         $" + sueldoBasico + "\n "
+                    + "HORAS EXTRAS LABORADAS     " + horasExtraLaboradas + "\n "
+                    + "VALOR HORAS EXTRAS	     $" + valorHorasExtraLaboradas + "\n "
+                    + "TOTAL HORAS EXTRAS	     $" + devengado + "\n"
+                    + "APORTE SALUD		         $" + aporteSalud + "\n"
+                    + "APORTE PENSION		     $" + aportePension + "\n "
+                    + "APORTE ARL                $" + aporteArl + "\n "
+                    + "SUDSIDIO TTE		         $" + sudsidioTTE + "\n "
+                    + "-------------------------------\n "
+                    + "NETO A PAGAR 		     $" + netoAPagar + "\n ";
+            ;
+        }
+
+        return nomina;
+    }
+
+    public static void calularsueldoNeto() {
+
+        for (int id = 0; id < empleados.length; id++) {
 
             double sueldoBasico = empleados[id].getSalarioBasico();
             int horasExtraLaboradas = empleados[id].getHorasExtraLaboradas();
@@ -79,29 +135,8 @@ public class VectorEmpleados {
             }
 
             netoAPagar = sueldoBasico - aporteSalud - aportePension - aporteArl + devengado + sudsidioTTE;
-
-            nomina = "Nomina \n"
-                    + "SUELDO BASICO	         $" + sueldoBasico + "\n "
-                    + "HORAS EXTRAS LABORADAS     " + horasExtraLaboradas + "\n "
-                    + "VALOR HORAS EXTRAS	     $" + valorHorasExtraLaboradas + "\n "
-                    + "TOTAL HORAS EXTRAS	     $" + devengado + "\n"
-                    + "APORTE SALUD		         $" + aporteSalud + "\n"
-                    + "APORTE PENSION		     $" + aportePension + "\n "
-                    + "APORTE ARL                $" + aporteArl + "\n "
-                    + "SUDSIDIO TTE		         $" + sudsidioTTE + "\n "
-                    + "-------------------------------\n "
-                    + "NETO A PAGAR 		     $" + netoAPagar + "\n ";
-            ;
-
-            // agregar los sueldos netos a los objetos
-            for (int i = 0; i < empleados.length; i++) {
-                empleados[i].setSalarioNeto(netoAPagar);
-            }
-
-        } else {
-            nomina = "El Usuario No Existe!";
+            empleados[id].setSalarioNeto(netoAPagar);
         }
-        return nomina;
     }
 
     // Metodos del algoritmo Quicksort
@@ -142,8 +177,8 @@ public class VectorEmpleados {
         for (int i = empleado.length - 1; i > 0; i--) {
             int maxValue = 0;
             for (int j = 0; j < i; j++) {
-                
-                if (compareStrings( empleado[i].getNombre() , empleado[j].getNombre()) > 0){
+
+                if (compareStrings(empleado[i].getNombre(), empleado[j].getNombre()) > 0) {
                     maxValue = j + 1;
                 }
 
@@ -158,7 +193,7 @@ public class VectorEmpleados {
         array[a] = value;
     }
 
-    private  int compareStrings(String word1, String word2) {
+    private int compareStrings(String word1, String word2) {
         for (int i = 0; i < Math.min(word1.length(), word2.length()); i++) {
             if ((int) word1.charAt(i) != (int) word2.charAt(i)) {
                 return (int) word1.charAt(i) - (int) word2.charAt(i);
@@ -172,27 +207,27 @@ public class VectorEmpleados {
     }
 
     // ordena por estrato en forma decendente
-    public void ordenarShell (Empleado[] empleado){
-            int inta, i;
-            Empleado aux;
-            boolean band;
-            inta = empleado.length;
-            while(inta > 0){
-                inta = inta / 2;
-                band = true;
-                while(band){
-                    band = false;
-                    i = 0;
-                    while ((i+inta) <=empleado.length-1){//2.1.1
-                        if (empleado[i].getEstrato() > empleado[i + inta].getEstrato()){
-                            aux = empleado[i];
-                            empleado[i] = empleado[i+inta];
-                            empleado[i+inta] = aux;
-                            band = true;
-                        }
-                        i = i +1;
+    public void ordenarShell(Empleado[] empleado) {
+        int inta, i;
+        Empleado aux;
+        boolean band;
+        inta = empleado.length;
+        while (inta > 0) {
+            inta = inta / 2;
+            band = true;
+            while (band) {
+                band = false;
+                i = 0;
+                while ((i + inta) <= empleado.length - 1) {// 2.1.1
+                    if (empleado[i].getEstrato() > empleado[i + inta].getEstrato()) {
+                        aux = empleado[i];
+                        empleado[i] = empleado[i + inta];
+                        empleado[i + inta] = aux;
+                        band = true;
                     }
+                    i = i + 1;
                 }
             }
+        }
     }
 }
